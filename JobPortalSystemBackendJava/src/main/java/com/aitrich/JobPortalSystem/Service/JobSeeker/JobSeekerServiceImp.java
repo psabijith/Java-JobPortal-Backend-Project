@@ -8,6 +8,7 @@ import com.aitrich.JobPortalSystem.Enums.Role;
 import com.aitrich.JobPortalSystem.Repository.IJobSeekerRepo;
 import com.aitrich.JobPortalSystem.Repository.IUserRepo;
 import com.aitrich.JobPortalSystem.Security.OwnershipUtils;
+import com.aitrich.JobPortalSystem.Service.Email.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -30,6 +31,7 @@ public class JobSeekerServiceImp implements IJobSeekerService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final IUserRepo userRepo;
+    private final EmailService emailService;
 
     @Override
     public JobSeekerResponseDTO createJobSeeker(JobSeekerRequestDTO dto) {
@@ -42,7 +44,11 @@ public class JobSeekerServiceImp implements IJobSeekerService {
         JobSeeker js = modelMapper.map(dto, JobSeeker.class);
         js.setPassword(user.getPassword());
         js.setActive(true);
-        return modelMapper.map(repository.save(js), JobSeekerResponseDTO.class);
+        JobSeeker saved = repository.save(js);
+
+        emailService.sendWelcome(saved.getEmail(), saved.getFirstName());
+
+        return modelMapper.map(saved, JobSeekerResponseDTO.class);
     }
 
     @Override

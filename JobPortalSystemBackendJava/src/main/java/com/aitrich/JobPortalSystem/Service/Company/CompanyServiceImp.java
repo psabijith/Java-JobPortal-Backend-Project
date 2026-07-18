@@ -8,6 +8,7 @@ import com.aitrich.JobPortalSystem.Enums.Role;
 import com.aitrich.JobPortalSystem.Repository.ICompanyRepo;
 import com.aitrich.JobPortalSystem.Repository.IUserRepo;
 import com.aitrich.JobPortalSystem.Security.OwnershipUtils;
+import com.aitrich.JobPortalSystem.Service.Email.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,7 @@ public class CompanyServiceImp implements ICompanyService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final IUserRepo userRepo;
+    private final EmailService emailService;
 
     @Override
     public CompanyResponseDTO createCompany(CompanyRequestDTO dto) {
@@ -36,7 +38,9 @@ public class CompanyServiceImp implements ICompanyService {
         user.setEmail(dto.getEmail());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setRole(Role.COMPANY);
-        userRepo.save(user);
+        User saved = userRepo.save(user);
+        emailService.sendWelcome(saved.getEmail(), dto.getCompanyName());
+
 
         Company company = modelMapper.map(dto, Company.class);
         company.setPassword(user.getPassword());

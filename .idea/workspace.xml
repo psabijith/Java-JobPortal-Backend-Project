@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="04d827da-859b-40a7-b273-b258714bff8d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Java-Backend---JobPortal-.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Configuration/DataInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Configuration/JobPortalConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Configuration/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Controller/AdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Controller/ApplicationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Controller/AuthController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Controller/CompanyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Controller/JobController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Controller/JobSeekerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/AdminDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/ApplicationPostDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/ApplicationResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/CompanyRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/CompanyResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/JobRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/JobResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/JobSeekerRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/JobSeekerResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/DTO/LoginRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Entity/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Entity/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Entity/Company.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Entity/Job.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Entity/JobSeeker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Enums/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Enums/Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Exception/GlobalExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/JobPortalSystemApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Repository/IAdminRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Repository/IApplicationRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Repository/ICompanyRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Repository/IJobRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Repository/IJobSeekerRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Repository/IUserRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Response/ApiResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/CustomUserDetailsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/IAuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/OwnershipUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Admin/AdminServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Admin/IAdminService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Application/ApplicationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Application/IApplicationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Authentication/AuthServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Company/CompanyServiceImp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Company/ICompanyService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Job/IJobService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Job/JobServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/JobSeeker/IJobSeekerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/JobSeeker/JobSeekerServiceImp.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;psabijith&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/psabijith/Java-JobPortal-Backend-Project.git&quot;,
+    &quot;accountId&quot;: &quot;f91a76e1-5a5b-4b4a-89fc-5440523e28f9&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3FAuG2PenU554IdH2Kyl9mRetix" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.JobPortalSystemApplication.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Java backend Project/Java-Backend---JobPortal-",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04d827da-859b-40a7-b273-b258714bff8d" name="Changes" comment="" />
+      <created>1781530097657</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1781530097657</updated>
+    </task>
+    <servers />
+  </component>
+</project>

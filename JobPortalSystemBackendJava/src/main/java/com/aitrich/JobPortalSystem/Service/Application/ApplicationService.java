@@ -12,6 +12,7 @@ import com.aitrich.JobPortalSystem.Repository.ICompanyRepo;
 import com.aitrich.JobPortalSystem.Repository.IJobRepo;
 import com.aitrich.JobPortalSystem.Repository.IJobSeekerRepo;
 import com.aitrich.JobPortalSystem.Security.OwnershipUtils;
+import com.aitrich.JobPortalSystem.Service.Email.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,7 @@ public class ApplicationService implements IApplicationService {
     private final IJobSeekerRepo jobSeekerRepo;
     private final ICompanyRepo companyRepo;
     private final ModelMapper modelMapper;
+    private final EmailService emailService;
 
     @Override
     public ApplicationPostDTO postApplication(ApplicationPostDTO dto) {
@@ -48,10 +50,11 @@ public class ApplicationService implements IApplicationService {
             app.setJob(jobRepo.findById(dto.getJobId())
                     .orElseThrow(() -> new RuntimeException("Job not found")));
         }
-        applicationRepo.save(app);
+        Application saved = applicationRepo.save(app);
         dto.setJobSeekerId(jobSeeker.getId());
         dto.setAppliedDate(app.getAppliedDate());
         dto.setStatus(app.getStatus());
+        emailService.sendApplicationAlert("psabijith1@gmail.com",saved.getJobSeeker().getFirstName(),saved.getJob().getJobTitle());
         return dto;
     }
 
@@ -60,8 +63,9 @@ public class ApplicationService implements IApplicationService {
         Application app = applicationRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Application " + id + " not found"));
         // Only the company that owns the job may change status
-        OwnershipUtils.check(app.getJob().getCompany().getEmail());      // ← one line
+        OwnershipUtils.check(app.getJob().getCompany().getEmail());
         app.setStatus(Status.valueOf(status));
+        emailService.sendStatusUpdate(app.getJobSeeker().getEmail(),app.getJob().getJobTitle(),status);
         return modelMapper.map(applicationRepo.save(app), ApplicationPostDTO.class);
     }
 
@@ -84,7 +88,7 @@ public class ApplicationService implements IApplicationService {
     public ApplicationResponseDTO updateApplication(ApplicationPostDTO dto, Long id) {
         Application app = applicationRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Application not found"));
-        OwnershipUtils.check(app.getJobSeeker().getEmail());             // ← one line
+        OwnershipUtils.check(app.getJobSeeker().getEmail());
         app.setStatus(dto.getStatus());
         return toResponseDTO(applicationRepo.save(app));
     }
@@ -106,7 +110,7 @@ public class ApplicationService implements IApplicationService {
     @Override
     public List<ApplicationResponseDTO> searchApplicationByJobSeekerId(Long id) {
         JobSeeker js = jobSeekerRepo.findById(id).orElseThrow(() -> new RuntimeException("JobSeeker not found"));
-        OwnershipUtils.check(js.getEmail());                             // ← one line
+        OwnershipUtils.check(js.getEmail());
         List<Application> apps = applicationRepo.findByJobSeeker_Id(id);
         if (apps.isEmpty()) throw new RuntimeException("No applications found for job seeker id " + id);
         return apps.stream().map(this::toResponseDTO).toList();
@@ -115,7 +119,7 @@ public class ApplicationService implements IApplicationService {
     @Override
     public List<ApplicationResponseDTO> searchApplicationByJobId(Long id) {
         Job job = jobRepo.findById(id).orElseThrow(() -> new RuntimeException("Job not found"));
-        OwnershipUtils.check(job.getCompany().getEmail());               // ← one line
+        OwnershipUtils.check(job.getCompany().getEmail());
         List<Application> apps = applicationRepo.findByJob_JobId(id);
         if (apps.isEmpty()) throw new RuntimeException("No applications found for job id " + id);
         return apps.stream().map(this::toResponseDTO).toList();
@@ -124,14 +128,14 @@ public class ApplicationService implements IApplicationService {
     @Override
     public List<ApplicationResponseDTO> getApplicationsByCompany(Long companyId) {
         Company company = companyRepo.findById(companyId).orElseThrow(() -> new RuntimeException("Company not found"));
-        OwnershipUtils.check(company.getEmail());                        // ← one line
+        OwnershipUtils.check(company.getEmail());
         return applicationRepo.findByCompanyId(companyId).stream().map(this::toResponseDTO).toList();
     }
 
     @Override
     public List<ApplicationResponseDTO> getApplicationsByCompanyAndStatus(Long companyId, Status status) {
         Company company = companyRepo.findById(companyId).orElseThrow(() -> new RuntimeException("Company not found"));
-        OwnershipUtils.check(company.getEmail());                        // ← one line
+        OwnershipUtils.check(company.getEmail());
         return applicationRepo.findByCompanyIdAndStatus(companyId, status).stream().map(this::toResponseDTO).toList();
     }
 
