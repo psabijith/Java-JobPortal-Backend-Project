@@ -1,12 +1,14 @@
 package com.aitrich.JobPortalSystem.Service.Authentication;
 
 import com.aitrich.JobPortalSystem.DTO.LoginRequestDTO;
+import com.aitrich.JobPortalSystem.DTO.LoginResponseDTO;
 import com.aitrich.JobPortalSystem.Entity.User;
 import com.aitrich.JobPortalSystem.Repository.IUserRepo;
 import com.aitrich.JobPortalSystem.Security.CustomUserDetailsService;
 import com.aitrich.JobPortalSystem.Security.IAuthService;
 import com.aitrich.JobPortalSystem.Security.jwt.jwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,7 @@ public class AuthServiceImp implements IAuthService {
     private final CustomUserDetailsService customUserDetailsService;
 
     @Override
-    public String login(LoginRequestDTO dto) {
+    public LoginResponseDTO login(LoginRequestDTO dto) {
 
         Optional<User> userOpt = userRepo.findByEmail(dto.getEmail());
 
@@ -39,8 +41,12 @@ public class AuthServiceImp implements IAuthService {
 
         String token = jwtUtil.generateToken(userDetails);
 
-        return "Login successful.\n"
-                + "Role: " + user.getRole() + "\n"
-                + "Token: " + token;
+        LoginResponseDTO response =  new LoginResponseDTO();
+
+        response.setMessage("Login Successful");
+        response.setToken(token);
+        response.setRole(user.getRole());
+
+        return response;
     }
 }

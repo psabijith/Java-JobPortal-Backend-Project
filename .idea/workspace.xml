@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04d827da-859b-40a7-b273-b258714bff8d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Java-Backend---JobPortal-.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/application.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Configuration/DataInitializer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Configuration/JobPortalConfig.class" beforeDir="false" />
@@ -55,6 +46,8 @@
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/CustomUserDetailsService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/IAuthService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/OwnershipUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/jwt/jwtFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Security/jwt/jwtUtil.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Admin/AdminServiceImp.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Admin/IAdminService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Application/ApplicationService.class" beforeDir="false" />
@@ -62,6 +55,7 @@
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Authentication/AuthServiceImp.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Company/CompanyServiceImp.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Company/ICompanyService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Email/EmailService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Job/IJobService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/Job/JobServiceImpl.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JobPortalSystemBackendJava/target/classes/com/aitrich/JobPortalSystem/Service/JobSeeker/IJobSeekerService.class" beforeDir="false" />
@@ -96,23 +90,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.JobPortalSystemApplication.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Java backend Project/Java-Backend---JobPortal-",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.JobPortalSystemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Java backend Project/Java-Backend---JobPortal-&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Java-Backend---JobPortal-" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Java-Backend---JobPortal-" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
