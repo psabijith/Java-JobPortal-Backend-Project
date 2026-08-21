@@ -1,5 +1,6 @@
 package com.aitrich.JobPortalSystem.Repository;
 
+import com.aitrich.JobPortalSystem.Entity.Job;
 import com.aitrich.JobPortalSystem.Entity.JobSeeker;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,8 @@ import java.util.Optional;
 public interface IJobSeekerRepo extends JpaRepository<JobSeeker, Long> {
 
     JobSeeker findByEmail(String email);
+
+    List<JobSeeker> findAllBySavedJobsContains(Job job);
 
     Optional<JobSeeker> findOptionalByEmail(String email);
 

@@ -15,5 +15,6 @@ public class LoginResponseDTO {
     String message;
     Role role;
     String token;
+    Long id;
 
 }

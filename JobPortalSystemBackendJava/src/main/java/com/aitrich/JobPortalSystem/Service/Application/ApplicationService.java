@@ -1,5 +1,6 @@
 package com.aitrich.JobPortalSystem.Service.Application;
 
+import com.aitrich.JobPortalSystem.DTO.ApplicationDetailsDTO;
 import com.aitrich.JobPortalSystem.DTO.ApplicationPostDTO;
 import com.aitrich.JobPortalSystem.DTO.ApplicationResponseDTO;
 import com.aitrich.JobPortalSystem.Entity.Application;
@@ -54,19 +55,75 @@ public class ApplicationService implements IApplicationService {
         dto.setJobSeekerId(jobSeeker.getId());
         dto.setAppliedDate(app.getAppliedDate());
         dto.setStatus(app.getStatus());
-        emailService.sendApplicationAlert("psabijith1@gmail.com",saved.getJobSeeker().getFirstName(),saved.getJob().getJobTitle());
+        emailService.sendApplicationAlert(saved.getJobSeeker().getEmail(), saved.getJobSeeker().getFirstName(),saved.getJob().getJobTitle());
+        return dto;
+    }
+
+    @Override
+    public ApplicationDetailsDTO getApplicationDetails(Long id) {
+
+        Application app = applicationRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Application not found"));
+
+        String applicantEmail = app.getJobSeeker().getEmail();
+        String companyEmail = app.getJob().getCompany().getEmail();
+
+        if (!OwnershipUtils.isAdmin()
+                && !OwnershipUtils.currentEmail().equals(applicantEmail)
+                && !OwnershipUtils.currentEmail().equals(companyEmail)) {
+            throw new AccessDeniedException("You are not allowed to view this application");
+        }
+
+        JobSeeker js = app.getJobSeeker();
+        Job job = app.getJob();
+
+        ApplicationDetailsDTO dto = new ApplicationDetailsDTO();
+
+        dto.setApplicationId(app.getId());
+        dto.setStatus(app.getStatus().name());
+        dto.setAppliedDate(app.getAppliedDate());
+
+        dto.setJobId(job.getJobId());
+        dto.setJobTitle(job.getJobTitle());
+
+        dto.setCompanyName(job.getCompany().getCompanyName());
+
+        dto.setJobSeekerId(js.getId());
+        dto.setJobSeekerName(js.getFirstName());
+
+        dto.setEmail(js.getEmail());
+
+        dto.setLocation(js.getLocation());
+        dto.setResumeUrl(js.getResumeUrl());
+
         return dto;
     }
 
     @Override
     public ApplicationPostDTO setStatus(String status, Long id) {
+
         Application app = applicationRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Application " + id + " not found"));
-        // Only the company that owns the job may change status
+
         OwnershipUtils.check(app.getJob().getCompany().getEmail());
+
         app.setStatus(Status.valueOf(status));
-        emailService.sendStatusUpdate(app.getJobSeeker().getEmail(),app.getJob().getJobTitle(),status);
-        return modelMapper.map(applicationRepo.save(app), ApplicationPostDTO.class);
+
+        emailService.sendStatusUpdate(
+                app.getJobSeeker().getEmail(),
+                app.getJob().getJobTitle(),
+                status
+        );
+
+        Application saved = applicationRepo.save(app);
+
+        ApplicationPostDTO dto = new ApplicationPostDTO();
+        dto.setJobSeekerId(saved.getJobSeeker().getId());
+        dto.setJobId(saved.getJob().getJobId());
+        dto.setStatus(saved.getStatus());
+        dto.setAppliedDate(saved.getAppliedDate());
+
+        return dto;
     }
 
     @Override
@@ -181,12 +238,30 @@ public class ApplicationService implements IApplicationService {
     }
 
     private ApplicationResponseDTO toResponseDTO(Application a) {
+
         ApplicationResponseDTO dto = new ApplicationResponseDTO();
+
         dto.setId(a.getId());
-        if (a.getJobSeeker() != null) dto.setJobSeekerId(a.getJobSeeker().getId());
-        if (a.getJob()       != null) dto.setJobId(a.getJob().getJobId());
-        dto.setStatus(a.getStatus());
+        dto.setStatus(String.valueOf(a.getStatus()));
         dto.setAppliedDate(a.getAppliedDate());
+
+        if (a.getJobSeeker() != null) {
+            dto.setJobSeekerId(a.getJobSeeker().getId());
+            dto.setJobSeekerName(a.getJobSeeker().getFirstName());
+        }
+
+        if (a.getJob() != null) {
+
+            dto.setJobId(a.getJob().getJobId());
+            dto.setJobTitle(a.getJob().getJobTitle());
+
+            if (a.getJob().getCompany() != null) {
+                dto.setCompanyName(
+                        a.getJob().getCompany().getCompanyName()
+                );
+            }
+        }
+
         return dto;
     }
 }

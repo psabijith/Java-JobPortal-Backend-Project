@@ -1,5 +1,6 @@
 package com.aitrich.JobPortalSystem.Service.Application;
 
+import com.aitrich.JobPortalSystem.DTO.ApplicationDetailsDTO;
 import com.aitrich.JobPortalSystem.DTO.ApplicationPostDTO;
 import com.aitrich.JobPortalSystem.DTO.ApplicationResponseDTO;
 import com.aitrich.JobPortalSystem.Enums.Status;
@@ -13,6 +14,8 @@ import java.util.Map;
 public interface IApplicationService {
 
     ApplicationPostDTO postApplication(ApplicationPostDTO applicationPostDTO);
+
+    ApplicationDetailsDTO getApplicationDetails(Long id);
 
     ApplicationResponseDTO getApplicationById(long id);
 

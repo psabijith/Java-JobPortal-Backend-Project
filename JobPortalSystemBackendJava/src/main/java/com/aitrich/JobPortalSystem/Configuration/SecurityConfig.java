@@ -47,6 +47,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/jobseekers").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/company").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                // New: two-step OTP registration endpoints (added, existing rules unchanged)
+                .requestMatchers(HttpMethod.POST, "/api/auth/register/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/jobs").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/jobs/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/jobs/search").permitAll()
@@ -60,6 +62,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/company/active").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/company/search").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/company/top-hiring").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/jobs/company/**").permitAll()
 
                 // Admin-only endpoints
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
@@ -79,6 +82,9 @@ public class SecurityConfig {
 
                 // Applications - authenticated users
                 .requestMatchers("/api/applications/**").authenticated()
+
+                // New: Interview module - authenticated users only
+                .requestMatchers("/api/interviews/**").authenticated()
 
                 // Company management (update/delete) - COMPANY or ADMIN
                 .requestMatchers(HttpMethod.PUT, "/api/company/**").hasAnyRole("COMPANY", "ADMIN")

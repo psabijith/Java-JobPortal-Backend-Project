@@ -58,19 +58,40 @@ public class CompanyServiceImp implements ICompanyService {
 
     @Override
     public CompanyResponseDTO updateCompany(Long id, CompanyRequestDTO dto) {
-        Company company = repository.findById(id).orElseThrow(() -> new RuntimeException("Company not found"));
+
+        Company company = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Company not found"));
+
         OwnershipUtils.check(company.getEmail());
 
         company.setCompanyName(dto.getCompanyName());
-        company.setEmail(dto.getEmail());
-        if (dto.getPassword() != null && !dto.getPassword().isBlank())
-            company.setPassword(passwordEncoder.encode(dto.getPassword())); // fix: encode on update
         company.setWebsite(dto.getWebsite());
         company.setLocation(dto.getLocation());
         company.setDescription(dto.getDescription());
-        company.setIndustry(dto.getIndustry());
-        company.setEmployeeCount(dto.getEmployeeCount());
-        company.setActive(dto.isActive());
+
+        // Only update email if provided
+        if (dto.getEmail() != null && !dto.getEmail().isBlank()) {
+            company.setEmail(dto.getEmail());
+        }
+
+        // Only update password if provided
+        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+            company.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
+
+        // Only update industry if provided
+        if (dto.getIndustry() != null) {
+            company.setIndustry(dto.getIndustry());
+        }
+
+        // Only update employee count if provided
+        if (dto.getEmployeeCount() != null) {
+            company.setEmployeeCount(dto.getEmployeeCount());
+        }
+
+        // Keep existing active value unless you actually want to change it
+        company.setActive(company.isActive());
+
         return convertToDTO(repository.save(company));
     }
 
@@ -132,5 +153,11 @@ public class CompanyServiceImp implements ICompanyService {
         return repository.findCompaniesByMostJobs().stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    private CompanyResponseDTO convertToDTO(Company c) { return modelMapper.map(c, CompanyResponseDTO.class); }
-}
+    private CompanyResponseDTO convertToDTO(Company c) {
+
+        CompanyResponseDTO dto = modelMapper.map(c, CompanyResponseDTO.class);
+
+        dto.setCompanyId(c.getId());
+
+        return dto;
+    }}

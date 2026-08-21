@@ -49,4 +49,29 @@ public class EmailService {
         send(to, "Reset your password",
                 "Click here to reset: " + link);
     }
+
+    // ---- New methods below (added for Interview module + OTP registration) ----
+    // Nothing above this line was changed.
+
+    // Call this after generating an OTP for the two-step registration flow
+    public void sendOtpEmail(String to, String otp, int validMinutes) {
+        send(to, "Your JobPortal verification code",
+                "Your OTP is: " + otp + ". It is valid for " + validMinutes + " minutes. "
+                        + "Do not share this code with anyone.");
+    }
+
+    // Call this when a company schedules/reschedules an interview
+    public void sendInterviewScheduled(String to, String candidateName, String jobTitle,
+                                        String scheduledAt, String mode, String location) {
+        send(to, "Interview scheduled: " + jobTitle,
+                "Hi " + candidateName + ", your interview for " + jobTitle
+                        + " has been scheduled on " + scheduledAt + " (" + mode + "). "
+                        + (location != null ? "Details: " + location : ""));
+    }
+
+    // Call this when an interview's status changes (completed/cancelled/etc.)
+    public void sendInterviewStatusUpdate(String to, String jobTitle, String status) {
+        send(to, "Interview update: " + jobTitle,
+                "Your interview for " + jobTitle + " is now: " + status);
+    }
 }

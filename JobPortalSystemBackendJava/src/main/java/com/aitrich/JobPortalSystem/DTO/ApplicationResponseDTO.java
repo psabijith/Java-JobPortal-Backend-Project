@@ -8,16 +8,21 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class ApplicationResponseDTO {
 
     private Long id;
     private Long jobSeekerId;
+    private String jobSeekerName;
+
     private Long jobId;
-    private Status status;
+    private String jobTitle;
+
+    private String status;
     private LocalDate appliedDate;
+
+    private String companyName;
 }

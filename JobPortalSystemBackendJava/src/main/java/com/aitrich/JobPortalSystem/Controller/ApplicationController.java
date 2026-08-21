@@ -1,5 +1,6 @@
 package com.aitrich.JobPortalSystem.Controller;
 
+import com.aitrich.JobPortalSystem.DTO.ApplicationDetailsDTO;
 import com.aitrich.JobPortalSystem.DTO.ApplicationPostDTO;
 import com.aitrich.JobPortalSystem.DTO.ApplicationResponseDTO;
 import com.aitrich.JobPortalSystem.Enums.Status;
@@ -31,6 +32,11 @@ public class ApplicationController {
     @GetMapping("/{id}")
     public ResponseEntity<ApplicationResponseDTO> getApplicationById(@PathVariable long id) {
         return ResponseEntity.ok(applicationService.getApplicationById(id));
+    }
+
+    @GetMapping("/details/{id}")
+    public ResponseEntity<ApplicationDetailsDTO> getApplicationDetails(@PathVariable Long id) {
+        return ResponseEntity.ok(applicationService.getApplicationDetails(id));
     }
 
     @GetMapping

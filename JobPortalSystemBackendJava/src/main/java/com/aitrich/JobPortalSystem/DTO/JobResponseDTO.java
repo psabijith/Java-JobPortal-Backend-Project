@@ -26,4 +26,5 @@ public class JobResponseDTO {
     private String jobTitle;
     private String jobType;
     private String location;
+    private Long applicantCount;
 }

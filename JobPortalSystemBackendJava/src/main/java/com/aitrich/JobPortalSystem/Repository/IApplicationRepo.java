@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,6 +17,9 @@ public interface IApplicationRepo extends JpaRepository<Application, Long> {
     List<Application> findByJob_JobId(Long jobId);
 
     List<Application> findByJobSeeker_Id(Long id);
+
+    @Transactional
+    void deleteByJob_JobId(Long jobId);
 
     @Query(value = "SELECT * FROM APPLICATION WHERE LOWER(status) = 'approved'", nativeQuery = true)
     List<Application> findByStatus();

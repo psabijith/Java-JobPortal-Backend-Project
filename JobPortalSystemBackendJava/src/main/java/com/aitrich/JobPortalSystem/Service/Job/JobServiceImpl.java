@@ -5,6 +5,7 @@ import com.aitrich.JobPortalSystem.DTO.JobResponseDTO;
 import com.aitrich.JobPortalSystem.Entity.Company;
 import com.aitrich.JobPortalSystem.Entity.Job;
 import com.aitrich.JobPortalSystem.Entity.JobSeeker;
+import com.aitrich.JobPortalSystem.Repository.IApplicationRepo;
 import com.aitrich.JobPortalSystem.Repository.ICompanyRepo;
 import com.aitrich.JobPortalSystem.Repository.IJobRepo;
 import com.aitrich.JobPortalSystem.Repository.IJobSeekerRepo;
@@ -14,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public class JobServiceImpl implements IJobService {
     private final ICompanyRepo companyRepo;
     private final ModelMapper modelMapper;
     private final IJobSeekerRepo jobSeekerRepo;
+    private final IApplicationRepo applicationRepo;
 
     @Override
     public JobResponseDTO createJob(JobRequestDTO dto) {
@@ -63,10 +66,27 @@ public class JobServiceImpl implements IJobService {
     }
 
     @Override
+    @Transactional
     public void deleteJobById(long id) {
-        Job job = jobRepo.findById(id).orElseThrow(() -> new RuntimeException("Job not found"));
+
+        Job job = jobRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job not found"));
+
         OwnershipUtils.check(job.getCompany().getEmail());
-        jobRepo.deleteById(id);
+
+        // Remove job from all saved lists
+        List<JobSeeker> seekers = jobSeekerRepo.findAllBySavedJobsContains(job);
+
+        for (JobSeeker js : seekers) {
+            js.getSavedJobs().remove(job);
+        }
+
+        jobSeekerRepo.saveAll(seekers);
+
+        // If applications exist, delete them too (or use orphanRemoval/cascade)
+        applicationRepo.deleteByJob_JobId(id);
+
+        jobRepo.delete(job);
     }
 
     @Override
@@ -146,13 +166,24 @@ public class JobServiceImpl implements IJobService {
 
     private JobResponseDTO convertToDTO(Job job) {
         JobResponseDTO dto = new JobResponseDTO();
-        dto.setJobId(job.getJobId()); dto.setDescription(job.getDescription());
-        dto.setPostedDate(job.getPostedDate()); dto.setEndDate(job.getEndDate());
-        dto.setSkills(job.getSkills()); dto.setExperience(job.getExperience());
-        dto.setSalary(job.getSalary()); dto.setActive(job.isActive());
-        dto.setJobTitle(job.getJobTitle()); dto.setJobType(job.getJobType());
+
+        dto.setJobId(job.getJobId());
+        dto.setDescription(job.getDescription());
+        dto.setPostedDate(job.getPostedDate());
+        dto.setEndDate(job.getEndDate());
+        dto.setSkills(job.getSkills());
+        dto.setExperience(job.getExperience());
+        dto.setSalary(job.getSalary());
+        dto.setActive(job.isActive());
+        dto.setJobTitle(job.getJobTitle());
+        dto.setJobType(job.getJobType());
         dto.setLocation(job.getLocation());
-        if (job.getCompany() != null) dto.setCompanyName(job.getCompany().getCompanyName());
+
+        if (job.getCompany() != null) {
+            dto.setCompanyName(job.getCompany().getCompanyName());
+        }
+        dto.setApplicantCount(applicationRepo.countByJob_JobId(job.getJobId()));
+
         return dto;
     }
 }
